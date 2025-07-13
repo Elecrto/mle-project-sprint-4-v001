@@ -3,9 +3,13 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.parquet
+.env
+env_recsys_start/
+catboost_info/
+.ipynb_checkpoints/
 # C extensions
 *.so
-
+*.pkl
 # Distribution / packaging
 .Python
 build/
