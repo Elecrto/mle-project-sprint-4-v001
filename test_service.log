@@ -1,0 +1,45 @@
+=== TEST 1: Get suggestions for existing user ===
+19:49:18,296 urllib3.connectionpool DEBUG Starting new HTTP connection (1): 127.0.0.1:8000
+19:49:19,636 urllib3.connectionpool DEBUG http://127.0.0.1:8000 "POST /suggestions?user_id=47&limit=5 HTTP/1.1" 200 37
+19:49:19,636 root INFO Response: {'suggestions': [978, 977, 975, 973, 971]}
+19:49:19,636 root INFO 
+=== TEST 2: Get suggestions for unknown user ===
+19:49:19,637 urllib3.connectionpool DEBUG Starting new HTTP connection (1): 127.0.0.1:8000
+19:49:24,239 urllib3.connectionpool DEBUG http://127.0.0.1:8000 "POST /suggestions?user_id=6666666&limit=3 HTTP/1.1" 200 29
+19:49:24,239 root INFO Response: {'suggestions': [978, 977, 975]}
+19:49:24,239 root INFO 
+=== TEST 3: Refresh recommendations cache ===
+19:49:24,240 urllib3.connectionpool DEBUG Starting new HTTP connection (1): 127.0.0.1:8000
+19:49:34,36 urllib3.connectionpool DEBUG http://127.0.0.1:8000 "GET /refresh_suggestions?rec_type=general HTTP/1.1" 200 22
+19:49:34,37 root INFO 
+=== TEST 4: Get system metrics ===
+19:49:34,37 urllib3.connectionpool DEBUG Starting new HTTP connection (1): 127.0.0.1:8000
+19:49:34,39 urllib3.connectionpool DEBUG http://127.0.0.1:8000 "GET /system_metrics HTTP/1.1" 200 42
+19:49:34,39 root INFO Response: {'custom_requests': 1, 'general_requests': 1}
+19:49:34,39 root INFO 
+=== TEST 5: Log user actions ===
+19:49:34,40 urllib3.connectionpool DEBUG Starting new HTTP connection (1): 127.0.0.1:8000
+19:49:34,42 urllib3.connectionpool DEBUG http://127.0.0.1:8000 "POST /log_action?user_id=69&item_id=679699 HTTP/1.1" 200 20
+19:49:34,43 urllib3.connectionpool DEBUG Starting new HTTP connection (1): 127.0.0.1:8000
+19:49:34,44 urllib3.connectionpool DEBUG http://127.0.0.1:8000 "POST /log_action?user_id=69&item_id=630670 HTTP/1.1" 200 20
+19:49:34,45 urllib3.connectionpool DEBUG Starting new HTTP connection (1): 127.0.0.1:8000
+19:49:34,46 urllib3.connectionpool DEBUG http://127.0.0.1:8000 "POST /log_action?user_id=69&item_id=646516 HTTP/1.1" 200 20
+19:49:34,47 urllib3.connectionpool DEBUG Starting new HTTP connection (1): 127.0.0.1:8000
+19:49:34,49 urllib3.connectionpool DEBUG http://127.0.0.1:8000 "POST /log_action?user_id=69&item_id=19152669 HTTP/1.1" 200 20
+19:49:34,49 urllib3.connectionpool DEBUG Starting new HTTP connection (1): 127.0.0.1:8000
+19:49:34,51 urllib3.connectionpool DEBUG http://127.0.0.1:8000 "POST /log_action?user_id=69&item_id=38646012 HTTP/1.1" 200 20
+19:49:34,51 root INFO 
+=== TEST 6: Get user history ===
+19:49:34,51 urllib3.connectionpool DEBUG Starting new HTTP connection (1): 127.0.0.1:8000
+19:49:34,53 urllib3.connectionpool DEBUG http://127.0.0.1:8000 "POST /user_actions?user_id=69&count=10 HTTP/1.1" 405 31
+19:49:34,53 root INFO Response: {"history": [96666134, 96277882, 96031295, 95981460, 95515096]}
+19:49:34,53 root INFO 
+=== TEST 7: Generate real-time suggestions ===
+19:49:34,54 urllib3.connectionpool DEBUG Starting new HTTP connection (1): 127.0.0.1:8000
+19:49:34,57 urllib3.connectionpool DEBUG http://127.0.0.1:8000 "POST /realtime_suggestions?user_id=69&limit=5 HTTP/1.1" 500 21
+19:49:34,57 root INFO Response: {'suggestions': [96574134, 85534122, 102063, 893213, 9007652]}
+19:49:34,57 root INFO 
+=== TEST 8: Get combined suggestions ===
+19:49:34,58 urllib3.connectionpool DEBUG Starting new HTTP connection (1): 127.0.0.1:8000
+19:49:34,668 urllib3.connectionpool DEBUG http://127.0.0.1:8000 "POST /suggestions?user_id=69&limit=10 HTTP/1.1" 500 21
+19:49:34,668 root INFO Response: {'suggestions': [978, 977, 975, 973, 971, 96574134, 85534122, 102063, 893213, 9007652]}
